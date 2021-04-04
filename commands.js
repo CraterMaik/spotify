@@ -199,10 +199,10 @@ module.exports = {
     return false; 
     
   },
-  executeCmd: async function(msg, args, discord, client){
+  executeCmd: async function(msg, args, discord, manager, client){
     let cmd = this.getCmd(args[0])
     if(cmd.checkArgs(msg, args.slice(1))) {
-    await cmd.execute(msg, args.slice(1), discord, client)
+    await cmd.execute(msg, args.slice(1), discord, manager, client)
     }
   }
 }
