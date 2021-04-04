@@ -1,0 +1,30 @@
+{
+  "name": "bot-spotify",
+  "version": "0.0.1",
+  "description": "Reproducir playlist de spotify desarrollado por CraterMaik.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.2.0",
+    "fs": "^0.0.2",
+    "spotify-manager": "^1.2.0"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/@CraterMaik"
+  },
+  "license": "MIT",
+  "keywords": [
+    "discord",
+    "bot",
+    "crater",
+    "cratermaik",
+    "mybot",
+    "portalmybot"
+  ]
+}
