@@ -12,7 +12,8 @@
     "dotenv": "^8.2.0",
     "ffmpeg-static": "^4.3.0",
     "fs": "^0.0.2",
-    "spotify-manager": "^1.2.0"
+    "spotify-manager": "^1.2.0",
+    "sqlite3": "^5.0.2"
   },
   "engines": {
     "node": "12.x"

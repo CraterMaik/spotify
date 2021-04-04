@@ -1,9 +1,10 @@
-//----------------------Discord Bot---------------------------
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const fs = require('fs')
 
-client.login().catch(err => {
+require('dotenv').config();
+
+client.login(process.env.DISCORD_TOKEN).catch(err => {
   //Agrege el Token de su Bot en el archivo .env
   console.error(err);
   process.exitCode = 1;
