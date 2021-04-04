@@ -5,8 +5,8 @@ module.exports = {
   dirBase: "./database/db/001_base.db",
   categories: [
     { name: "test", priority: 5 },
+    { name: "music", priority: 8 },
     { name: "general", priority: 8 },
-    { name: "levels", priority: 8 },
     { name: "dev", priority: 8 }
   ],
   groups: [
