@@ -11,7 +11,7 @@ module.exports = class listCommand extends commands.Command {
       aliases: [],
       category: 'general',
       priority: 9,
-      permLvl: 3
+      permLvl: 0
     });
   }
   async execute(msg, args, discord, manager){
