@@ -13,7 +13,8 @@
     "ffmpeg-static": "^4.3.0",
     "fs": "^0.0.2",
     "spotify-manager": "^1.2.0",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.2",
+    "ytdl-core": "^4.5.0"
   },
   "engines": {
     "node": "12.x"
