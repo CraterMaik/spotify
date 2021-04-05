@@ -33,17 +33,9 @@ module.exports = class playCommand extends commands.Command {
           .then(async (conn) => {
             msg.channel.send(`Conectado en ${conn.channel.name}`);
             
-            /* PlayList Spotify */
-            const SplayList = await manager.getPlaylist(id)
-            const tracks = await SplayList.tracks.items;
-            
-            //name, duration_ms, popularity
-            const listTracks = tracks.map((track) => track.track.name)
-
             playNum[msg.guild.id] = 0;
             await play(playlist, conn)
             await setPresence(playNum[msg.guild.id])
-            //   console.log(listTracks);
 
           })
           
@@ -55,8 +47,10 @@ module.exports = class playCommand extends commands.Command {
 
     async function play(playlist, conn) {
       // test
-      console.log('Pista: '+playNum[msg.guild.id]);
-
+      const SPlayList = await getPlaylist();
+ 
+      console.log(SPlayList[playNum[msg.guild.id]]);
+      
       const stream = ytdl(playlist[playNum[msg.guild.id]], {
         filter: 'audioonly',
         highWaterMark: 1 << 25,
@@ -88,6 +82,15 @@ module.exports = class playCommand extends commands.Command {
          }
        })
 
+    }
+    async function getPlaylist() {
+      /* PlayList Spotify */
+      const SplayList = await manager.getPlaylist(id)
+      const tracks = await SplayList.tracks.items;
+
+      //name, duration_ms, popularity
+      const listTracks = tracks.map((track) => track.track.name)
+      return listTracks;
     }
 
     handleMusic(playlist)
