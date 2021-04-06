@@ -4,15 +4,9 @@ require('dotenv').config();
 const YouTube = require('simple-youtube-api');
 const youtube = new YouTube(process.env.YT_API_KEY)
 
-const { id } = urlParse("https://open.spotify.com/playlist/0YcgZpU7ZNvHz2EfIja8Pz")
+const { id } = urlParse(process.env.PLAYLIST)
 
 const commands = require('../../commands.js')
-
-const playlist = [
-        'https://www.youtube.com/watch?v=papuvlVeZg8',
-        'https://www.youtube.com/watch?v=PMivT7MJ41M',
-        'https://www.youtube.com/watch?v=qPTfXwPf_HM'
-      ];
 
 let playNum = {};
 module.exports = class playCommand extends commands.Command {
@@ -31,14 +25,16 @@ module.exports = class playCommand extends commands.Command {
 
     if (!station) return msg.channel.send('No se encontro el canal inidicado.')
 
-    async function handleMusic(playlist) {
+    async function handleMusic() {
       try {
         station.join()
           .then(async (conn) => {
             msg.channel.send(`Conectado en ${conn.channel.name}`);
+
             let SPlayList = await getPlaylist();
             playNum[msg.guild.id] = 0;
-            await play(playlist, conn)
+
+            await play(conn)
             await setPresence(SPlayList[playNum[msg.guild.id]])
 
           })
@@ -49,13 +45,17 @@ module.exports = class playCommand extends commands.Command {
       }
     }
 
-    async function play(playlist, conn) {
+    async function play(conn) {
       // test
       const SPlayList = await getPlaylist();
- 
-      console.log(SPlayList[playNum[msg.guild.id]]);
+      let song = SPlayList[playNum[msg.guild.id]];
+
+      let video = await youtube.searchVideos(song, 1)
+      if (!video.length) return msg.channel.send('No se encontraron resultados de la canción requerida.')
       
-      const stream = ytdl(playlist[playNum[msg.guild.id]], {
+      let songURL = `https://www.youtube.com/watch?v=${video[0].id}`;
+
+      const stream = ytdl(songURL, {
         filter: 'audioonly',
         highWaterMark: 1 << 25,
         quality: "highestaudio"
@@ -63,18 +63,19 @@ module.exports = class playCommand extends commands.Command {
 
      await conn.play(stream)
          .on('finish', async () => {
-           await nextSong(playlist, conn)
+           await nextSong(conn)
             await setPresence(SPlayList[playNum[msg.guild.id]])
 
            })
            .on('error', (error) => console.log(error));
     }
 
-    async function nextSong(playlist, conn) {
+    async function nextSong(conn) {
+      const SPlayList = await getPlaylist();
 
-      playNum[msg.guild.id] = playNum[msg.guild.id] < playlist.length - 1 ? playNum[msg.guild.id] + 1 : 0;
+      playNum[msg.guild.id] = playNum[msg.guild.id] < SPlayList.length - 1 ? playNum[msg.guild.id] + 1 : 0;
 
-      await play(playlist, conn)
+      await play(conn)
 
     }
 
@@ -97,8 +98,8 @@ module.exports = class playCommand extends commands.Command {
       
       return listTracks;
     }
-
-    handleMusic(playlist)
+    
+    handleMusic()
 
   }
   
