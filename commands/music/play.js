@@ -1,9 +1,13 @@
 const { Utils: { urlParse } } = require('spotify-manager')
 const ytdl = require('ytdl-core');
+require('dotenv').config();
+const YouTube = require('simple-youtube-api');
+const youtube = new YouTube(process.env.YT_API_KEY)
 
 const { id } = urlParse("https://open.spotify.com/playlist/0YcgZpU7ZNvHz2EfIja8Pz")
 
 const commands = require('../../commands.js')
+
 const playlist = [
         'https://www.youtube.com/watch?v=papuvlVeZg8',
         'https://www.youtube.com/watch?v=PMivT7MJ41M',
@@ -50,7 +54,7 @@ module.exports = class playCommand extends commands.Command {
       const SPlayList = await getPlaylist();
  
       console.log(SPlayList[playNum[msg.guild.id]]);
-
+      
       const stream = ytdl(playlist[playNum[msg.guild.id]], {
         filter: 'audioonly',
         highWaterMark: 1 << 25,
