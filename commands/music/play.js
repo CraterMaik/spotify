@@ -32,10 +32,10 @@ module.exports = class playCommand extends commands.Command {
         station.join()
           .then(async (conn) => {
             msg.channel.send(`Conectado en ${conn.channel.name}`);
-            
+            let SPlayList = await getPlaylist();
             playNum[msg.guild.id] = 0;
             await play(playlist, conn)
-            await setPresence(playNum[msg.guild.id])
+            await setPresence(SPlayList[playNum[msg.guild.id]])
 
           })
           
@@ -50,7 +50,7 @@ module.exports = class playCommand extends commands.Command {
       const SPlayList = await getPlaylist();
  
       console.log(SPlayList[playNum[msg.guild.id]]);
-      
+
       const stream = ytdl(playlist[playNum[msg.guild.id]], {
         filter: 'audioonly',
         highWaterMark: 1 << 25,
@@ -60,7 +60,7 @@ module.exports = class playCommand extends commands.Command {
      await conn.play(stream)
          .on('finish', async () => {
            await nextSong(playlist, conn)
-            await setPresence(playNum[msg.guild.id])
+            await setPresence(SPlayList[playNum[msg.guild.id]])
 
            })
            .on('error', (error) => console.log(error));
@@ -77,7 +77,7 @@ module.exports = class playCommand extends commands.Command {
     async function setPresence(song) {
        client.user.setPresence({
          activity: {
-           name: `Pista: ${song}`,
+           name: `${song}`,
            type: 'LISTENING'
          }
        })
@@ -89,13 +89,12 @@ module.exports = class playCommand extends commands.Command {
       const tracks = await SplayList.tracks.items;
 
       //name, duration_ms, popularity
-      const listTracks = tracks.map((track) => track.track.name)
+      const listTracks = tracks.map((track) => `${track.track.album.artists[0].name} - ${track.track.name} `);
+      
       return listTracks;
     }
 
     handleMusic(playlist)
-
-    
 
   }
   
