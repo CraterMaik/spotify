@@ -52,7 +52,7 @@ module.exports = class playCommand extends commands.Command {
 
       let video = await youtube.searchVideos(song, 1)
       if (!video.length) return msg.channel.send('No se encontraron resultados de la canción requerida.')
-      
+      console.log('Titulo: '+ video[0].title);
       let songURL = `https://www.youtube.com/watch?v=${video[0].id}`;
 
       const stream = ytdl(songURL, {
@@ -94,7 +94,7 @@ module.exports = class playCommand extends commands.Command {
       const tracks = await SplayList.tracks.items;
 
       //name, duration_ms, popularity
-      const listTracks = tracks.map((track) => `${track.track.album.artists[0].name} - ${track.track.name} `);
+      const listTracks = tracks.map((track) => `${track.track.album.artists[0].name} ${track.track.name}`);
       
       return listTracks;
     }
