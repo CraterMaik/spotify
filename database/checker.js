@@ -6,6 +6,9 @@ async function tableCoins() {
   await sql.run(
     "CREATE TABLE IF NOT EXISTS coins (iduser TEXT, coins INTEGER, status INTEGER)"
   );
+  await sql.run(
+    "CREATE TABLE IF NOT EXISTS beers (iduser TEXT, beers INTEGER, status INTEGER DEFAULT 0)"
+  )
 }
 
 module.exports = {
