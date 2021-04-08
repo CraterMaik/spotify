@@ -25,6 +25,5 @@ module.exports = class skipCommand extends Command {
     return msg.channel.send('La canción en reproducción fue omitida.');
     
 
-
   }
 }
