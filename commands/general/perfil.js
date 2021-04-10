@@ -16,7 +16,7 @@ module.exports = class perfilCommand extends commands.Command {
       permLvl: 0
     });
   }
-  async execute(msg, args) {
+  async execute(msg) {
     let mentions = msg.mentions.users.first() || msg.author;
 
     let exists = await db.beers.exists(mentions.id)
