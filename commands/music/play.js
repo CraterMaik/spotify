@@ -15,7 +15,7 @@ module.exports = class playCommand extends commands.Command {
       aliases: [],
       category: 'music',
       priority: 9,
-      permLvl: 0
+      permLvl: 3
     });
   }
   async execute(msg, args, discord, manager, client){
@@ -40,7 +40,7 @@ module.exports = class playCommand extends commands.Command {
             await play(conn)
             await queue.set(msg.guild.id, conn)
             
-            await setPresence((playNum[msg.guild.id] + 1) + ' - ' + SPlayList[playNum[msg.guild.id]])
+            await setPresence((playNum[msg.guild.id] + 1) + ' - ' + SPlayList[playNum[msg.guild.id]].toUpperCase())
 
           })
           
@@ -71,7 +71,7 @@ module.exports = class playCommand extends commands.Command {
      await conn.play(stream)
          .on('finish', async () => {
            await nextSong(conn)
-            await setPresence((playNum[msg.guild.id] + 1) + ' - ' + SPlayList[playNum[msg.guild.id]])
+            await setPresence((playNum[msg.guild.id] + 1) + ' - ' + SPlayList[playNum[msg.guild.id]].toUpperCase())
             
 
            })
@@ -102,7 +102,7 @@ module.exports = class playCommand extends commands.Command {
       const tracks = await SplayList.tracks.items;
 
       //name, duration_ms, popularity
-      const listTracks = tracks.map((track) => `${track.track.name} - ${track.track.album.artists[0].name === 'Various Artists' ? track.track.album.name : track.track.album.artists[0].name}`);
+      const listTracks = tracks.map((track) => `${track.track.album.artists[0].name === 'Various Artists' ? track.track.album.name.toLowerCase() : track.track.album.artists[0].name.toLowerCase()} ${track.track.name.toLowerCase()}`);
 
       return listTracks;
     }
