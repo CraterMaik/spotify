@@ -6,7 +6,7 @@ module.exports = class stopCommand extends Command {
   constructor() {
     super({
       name: 'stop',
-      aliases: [],
+      aliases: ['parar'],
       category: 'music',
       priority: 7,
       permLvl: 3
