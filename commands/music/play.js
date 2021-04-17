@@ -57,10 +57,14 @@ module.exports = class playCommand extends commands.Command {
       let song = SPlayList[playNum[msg.guild.id]];
       console.log('Canción Spotify: '+song);
       let videos = await youtube.searchVideos(song, 7)
-      if (!videos.length) return msg.channel.send('No se encontraron resultados de la canción requerida.')
+      if (!videos.length) return nextSong(conn);
       let videosLog = videos.map((vi, i) => i === 0 ? vi.title +` <===` : vi.title)
       // log test
       console.log(videosLog);
+
+      if (!videos[0].url) {
+        return nextSong(conn);
+      }
 
       const stream = ytdl(videos[0].url, {
         filter: 'audioonly',
@@ -110,7 +114,6 @@ module.exports = class playCommand extends commands.Command {
     handleMusic()
 
   }
-  
   
 
 }
