@@ -105,7 +105,6 @@ module.exports = class playCommand extends commands.Command {
       const SplayList = await manager.getPlaylist(id)
       const tracks = await SplayList.tracks.items;
 
-      //name, duration_ms, popularity
       const listTracks = tracks.map((track) => `${track.track.album.artists[0].name === 'Various Artists' ? track.track.album.name.toLowerCase() : track.track.album.artists[0].name.toLowerCase()} ${track.track.name.toLowerCase()}`);
 
       return listTracks;
