@@ -10,7 +10,7 @@ module.exports = class perfilCommand extends commands.Command {
   constructor() {
     super({
       name: "perfil",
-      aliases: ['birras', 'me'],
+      aliases: ['me'],
       category: "general",
       priority: 9,
       permLvl: 0

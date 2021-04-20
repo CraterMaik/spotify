@@ -30,7 +30,16 @@ module.exports = {
     await queries.runQuery(query, [newBeers, iduser]);
 
   },
-  removeWins: async function (iduser, newBeers) {
+  giftBeers: async function (iduser, idgift, amount) {
+    //gift
+    let query = "UPDATE beers SET beers = beers - ? WHERE iduser = ?";
+    let queryMe = "UPDATE beers SET beers = beers + ? WHERE iduser = ?";
+
+    await queries.runQuery(query, [amount, iduser]);
+    await queries.runQuery(queryMe, [amount, idgift]);
+
+  },
+  removeBeers: async function (iduser, newBeers) {
     let query = "UPDATE beers SET beers = beers - ? WHERE iduser = ?";
     await queries.runQuery(query, [newBeers, iduser]);
 

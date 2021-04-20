@@ -3,12 +3,12 @@ const db = require("../../database/database.js");
 
 const lang = require('../../util.js').getLanguage();
 
-module.exports = class setWinsCommand extends commands.Command {
+module.exports = class setBeertsCommand extends commands.Command {
   constructor() {
     super({
-      name: "setwins",
-      aliases: ['sw'],
-      category: "levels",
+      name: "setbeers",
+      aliases: ['sb'],
+      category: "general",
       priority: 9,
       permLvl: 3
     });
@@ -19,21 +19,20 @@ module.exports = class setWinsCommand extends commands.Command {
 
     if (!members) return msg.channel.send('Debe mencionar a un usuario.')
     //#comando @user, add, '22'
-    let exists = await db.cards.exists(members.id);
-    if (exists !== true)
-      return msg.channel.send(
-        "Usuario mencionado no tiene una tarjeta de entrenador registrada."
-      );
-    if (!args[1]) return msg.channel.send('Debe ingresar una de las siguientes opciones:\n`setwins @user add <puntos>` ó `setwins @user remove <puntos>`')
+    let exists = await db.beers.exists(members.id)
+
+    if (exists !== true) await db.beers.registerUsers(members.id)
+
+    if (!args[1]) return msg.channel.send('Debe ingresar una de las siguientes opciones:\n`setbeers @user add <puntos>` ó `setbeers @user remove <puntos>`')
 
     if (args[1] === 'add') {
 
       if (!isNaN(args[2])) {
         let cantidad = parseInt(args[2]);
-        let cantidadWins = Math.round(cantidad)
+        let cantidadBeers = Math.round(cantidad)
 
-        await db.cards.addWins(members.id, cantidadWins)
-        return msg.channel.send('Se ha agregado **' + cantidadWins + '** punto(s) de victoria a ' + members.username)
+        await db.beers.addBeers(members.id, cantidadBeers)
+        return msg.channel.send('Se ha agregado **' + cantidadBeers + '** cerveza(s) a ' + members.username)
 
       } else {
         return msg.channel.send('Debes ingresar un numero como parametro.')
@@ -43,10 +42,10 @@ module.exports = class setWinsCommand extends commands.Command {
     } else if (args[1] === 'remove') {
       if (!isNaN(args[2])) {
         let cantidad = parseInt(args[2]);
-        let cantidadWins = Math.round(cantidad)
+        let cantidadBeers = Math.round(cantidad)
 
-        await db.cards.removeWins(members.id, cantidadWins)
-        return msg.channel.send('Se ha eliminado **' + cantidadWins + '** punto(s) de victoria a ' + members.username)
+        await db.beers.removeBeers(members.id, cantidadWins)
+        return msg.channel.send('Se ha eliminado **' + cantidadBeers + '** cerveza(s)  ' + members.username)
 
       } else {
         return msg.channel.send('Debes ingresar un numero como parametro.')
