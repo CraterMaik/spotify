@@ -1,8 +1,5 @@
 const commands = require('../../commands.js')
 const db = require("../../database/database.js");
-
-const lang = require('../../util.js').getLanguage();
-
 module.exports = class setBeertsCommand extends commands.Command {
   constructor() {
     super({

@@ -19,7 +19,7 @@ module.exports = class perfilCommand extends commands.Command {
   async execute(msg) {
     let mentions = msg.mentions.users.first() || msg.author;
     let ID_USER = mentions.id;
-
+    
     let exists = await db.beers.exists(ID_USER)
 
     if (exists !== true) await db.beers.registerUsers(ID_USER)
