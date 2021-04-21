@@ -50,17 +50,3 @@ module.exports = class perfilCommand extends commands.Command {
   }
 };
 
-async function createCanvas() {
- 
-  return (
-    new Canvas(721, 436)
-      .save()
-      .setColor('#AEFD54')
-      .printRectangle(5, 5, 290, 290)
-      .setColor('#FFAE23')
-      .setTextFont('28px Impact')
-      .printText('Hello World!', 130, 150)
-      .toBufferAsync()
-   
-  );
-}
