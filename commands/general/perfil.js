@@ -5,7 +5,6 @@ const db = require("../../database/database.js");
 const commands = require("../../commands.js");
 /* const moment = require("moment"); */
 /* const { get } = require("snekfetch"); */
-
 module.exports = class perfilCommand extends commands.Command {
   constructor() {
     super({
@@ -32,7 +31,7 @@ module.exports = class perfilCommand extends commands.Command {
     const { body: avatarIMG } = await snekfetch.get(
        mentions.displayAvatarURL({ format: "jpg", size: 1024 })
     );
-
+    
     const card = new Canvas(302, 406)
       .addImage(cardIMG, 0, 0, 302, 406)
       .setColor('#7289DA')
@@ -49,4 +48,5 @@ module.exports = class perfilCommand extends commands.Command {
 
   }
 };
+
 

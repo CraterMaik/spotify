@@ -42,7 +42,7 @@ module.exports = class setBeertsCommand extends commands.Command {
         let cantidadBeers = Math.round(cantidad)
 
         await db.beers.removeBeers(members.id, cantidadWins)
-        return msg.channel.send('Se ha eliminado **' + cantidadBeers + '** cerveza(s)  ' + members.username)
+        return msg.channel.send('Se ha eliminado **' + cantidadBeers + '** cerveza(s) a' + members.username)
 
       } else {
         return msg.channel.send('Debes ingresar un numero como parametro.')
