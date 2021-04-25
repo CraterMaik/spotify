@@ -8,7 +8,7 @@ module.exports = class helpCommand extends commands.Command {
       aliases: ['ayuda'],
       category: 'general',
       priority: 9,
-      permLvl: 6
+      permLvl: 0
     });
   }
   execute(msg, args, discord){
