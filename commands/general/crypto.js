@@ -53,7 +53,7 @@ module.exports = class cryptoCommand extends commands.Command {
               {
                 name: 'Precio de cambio (24h)',
                 value: `▸ $${numberFormat(price24, 2)} (${percent_change_24h}%)`,
-                inline: true
+                
               },
               {
                 name: 'Precio de cambio (7d)',
@@ -62,17 +62,17 @@ module.exports = class cryptoCommand extends commands.Command {
               },
               {
                 name: 'Market Cap',
-                value: `▸ $${market_cap}`,
-               
+                value: `▸ $${market_cap}`
+                
               },
               {
                 name: 'Suministro circulante',
                 value: `▸ $${supply}`,
-                
+                inline: true
               },
               {
                 name: 'Estadísticas detalladas',
-                value: `[CoinMarketCap](https://coinmarketcap.com/currencies/${name.toLocaleLowerCase().split(' ').join('-')}/) | [Coinbase](https://www.coinbase.com/price/${name.toLocaleLowerCase().split(' ').join('-')})`,
+                value: `[CoinMarketCap](https://coinmarketcap.com/currencies/${name.toLocaleLowerCase().split(' ').join('-')}/)`,
               },
             ],
             image: {
