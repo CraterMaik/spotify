@@ -19,8 +19,7 @@ module.exports = class listCommand extends commands.Command {
     const PlayList = await manager.getPlaylist(id)
     const tracks = await PlayList.tracks.items;
     const listTracks = tracks.map((track) => track.track.name)
-    //name, track_number, duration_ms, popularity
-    console.log(listTracks);
+
     let embed = new discord.MessageEmbed()
       .setColor('random')
       .setTitle(`Playlist **${PlayList.name}**`)
