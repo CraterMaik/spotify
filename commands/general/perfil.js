@@ -3,8 +3,6 @@ const { Canvas } = require("canvas-constructor");
 const snekfetch = require("node-superfetch");
 const db = require("../../database/database.js");
 const commands = require("../../commands.js");
-/* const moment = require("moment"); */
-/* const { get } = require("snekfetch"); */
 module.exports = class perfilCommand extends commands.Command {
   constructor() {
     super({
