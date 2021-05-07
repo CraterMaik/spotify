@@ -14,7 +14,7 @@ module.exports = async (client, reaction, user) => {
  
   if (reaction.emoji.name === "⚪") {
       const member = message.guild.members.cache.get(user.id);
-     // console.log(member);
+  
       message.guild.channels.cache.get(message.channel.id).send(`${member.user.username} (${member.user.id})`)
   }
 }
