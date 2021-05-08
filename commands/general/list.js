@@ -1,7 +1,5 @@
 const { Utils: { urlParse } } = require('spotify-manager')
-
 const { id } = urlParse("https://open.spotify.com/playlist/0YcgZpU7ZNvHz2EfIja8Pz")
-
 const commands = require('../../commands.js')
 
 module.exports = class listCommand extends commands.Command {
@@ -27,6 +25,7 @@ module.exports = class listCommand extends commands.Command {
       .setFooter('portalmybot.com', msg.guild.iconURL())
 
     msg.channel.send(embed);
+
   }
 
 }
