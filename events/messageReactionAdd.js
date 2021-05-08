@@ -1,6 +1,7 @@
 
 module.exports = async (client, reaction, user) => {
   const message = reaction.message;
+
   if (user.bot) return;
 
   if (reaction.partial) {
@@ -15,6 +16,6 @@ module.exports = async (client, reaction, user) => {
   if (reaction.emoji.name === "⚪") {
       const member = message.guild.members.cache.get(user.id);
   
-      message.guild.channels.cache.get(message.channel.id).send(`${member.user.username} (${member.user.id})`)
+      message.guild.channels.cache.get(message.channel.id).send(`${member.user.username} - (${member.user.id})`)
   }
 }

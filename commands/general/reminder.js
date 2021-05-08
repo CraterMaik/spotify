@@ -13,6 +13,7 @@ module.exports = class helpCommand extends commands.Command {
   execute(msg, args, discord) {
     msg.channel.send('Reacciona este mensaje para el recordatorio.').then((message) => {
        message.react(`⚪`)
+       
     })
   }
 }
