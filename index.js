@@ -7,10 +7,10 @@ require('dotenv').config();
 client.queue = new Map();
 
 client.login(process.env.DISCORD_TOKEN).catch(err => {
-  //Agrege el Token de su Bot en el archivo .env
   console.error(err);
   process.exitCode = 1;
   process.exit();
+  
 });
 
 for (let file of fs.readdirSync("./events/")) {

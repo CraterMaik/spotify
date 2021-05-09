@@ -1,7 +1,6 @@
 
 module.exports = async (client, reaction, user) => {
   const message = reaction.message;
-
   if (user.bot) return;
 
   if (reaction.partial) {

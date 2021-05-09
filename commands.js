@@ -150,9 +150,6 @@ module.exports = {
     }
   },
   checkPerms: function(msg, permLvl){
-    //Comprobar si el autor del mensaje tiene permisos de
-    //usar un comando, devuele verdadero, falso.
-    
     for(var i = 0; i < config.superusers.length; i++){
       if(msg.author.id === config.superusers[i]){
         return true;
