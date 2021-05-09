@@ -24,9 +24,6 @@ module.exports = class beersCommand extends commands.Command {
 
     if (exists !== true) await db.beers.registerUsers(ID_USER)
 
-   
-   // if (!args[1]) return msg.channel.send('Debe ingresar una de las siguientes opciones:\n`beers @user dar <cantidad>`')
-
     if (args[1] === 'dar' || args[1] === 'regalar') {
       let result = await db.beers.getBeers(ID_USER);
       let BEERS_USER = result.beers;
