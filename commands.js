@@ -31,7 +31,7 @@ class Command {
           //Verificar si es válido
           if(!cmdArg.checkArg(msg, msgArgs[argsPos])){
             if(!cmdArg.optional||cmdArg.failOnInvalid){
-              //enviar un mensaje de error
+        
               util.getSend(msg, cmdArg.invalidError);
              
               valid = false;
@@ -58,7 +58,6 @@ class Argument {
     this.interactiveMsg = argInfo.interactiveMsg;
     this.possibleValues = argInfo.possibleValues;
     this.missingError = argInfo.missingError;
-    //el argumento no es valido:
     this.invalidError = argInfo.invalidError;
   }
   checkArg(msg, msgArg){
@@ -66,7 +65,6 @@ class Argument {
     
     switch(this.type) {
       case 'mention': 
-        //<@8181518181818181>
         let mention = msgArg.match(/<@!?(.*?[0-9])>/);
         if(mention == null||!msg.guild.members.cache.has(mention[1])){
           valid = false;
@@ -78,7 +76,6 @@ class Argument {
         }
         break;
       case 'channel':
-        //<#1586128918181818>
         let channel = msgArg.match(/<#(.*?)>/);
         if(channel == null||!msg.guild.channels.cache.has(channel[1])){
           valid = false;
