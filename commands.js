@@ -2,7 +2,6 @@ const fs = require('fs');
 const util = require('./util.js');
 const config = util.getConfig()[1];
 const lang = util.getLanguage();
-
 class Command {
   constructor(commandInfo){
     this.name = commandInfo.name;
@@ -28,7 +27,6 @@ class Command {
             break;
           }
         }else{
-          //Verificar si es válido
           if(!cmdArg.checkArg(msg, msgArgs[argsPos])){
             if(!cmdArg.optional||cmdArg.failOnInvalid){
         
@@ -41,7 +39,6 @@ class Command {
             if(cmdArg.breakOnValid){
               break;
             }
-            //Incremento para nuevo argumento de mensaje
             argsPos++;
           }
         }
