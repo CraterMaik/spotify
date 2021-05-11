@@ -1,7 +1,7 @@
 module.exports = {
-  prefix: "s!",
+  prefix: "s!!",
   statusBOT: "portalmybot.com",
-  superusers: ["253727823972401153"], //Puedes añadir más ID
+  superusers: ["253727823972401153"],
   dirBase: "./database/db/001_base.db",
   categories: [
     { name: "test", priority: 5 },
