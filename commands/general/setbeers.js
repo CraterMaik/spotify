@@ -37,6 +37,7 @@ module.exports = class setBeertsCommand extends commands.Command {
       }
 
     } else if (args[1] === 'remove') {
+      
       if (!isNaN(args[2])) {
         let cantidad = parseInt(args[2]);
         let cantidadBeers = Math.round(cantidad)

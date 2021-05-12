@@ -13,7 +13,6 @@ module.exports = class helpCommand extends commands.Command {
   }
   execute(msg, args, discord){
 
-  
     let embed = new discord.MessageEmbed()
       .setColor("GREEN")
     
