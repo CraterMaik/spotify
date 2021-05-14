@@ -15,7 +15,7 @@ module.exports = class setBeertsCommand extends commands.Command {
     let members = msg.mentions.users.first() || msg.guild.members.cache.get(args[0]);
 
     if (!members) return msg.channel.send('Debe mencionar a un usuario.')
-    //#comando @user, add, '22'
+
     let exists = await db.beers.exists(members.id)
 
     if (exists !== true) await db.beers.registerUsers(members.id)
@@ -51,7 +51,5 @@ module.exports = class setBeertsCommand extends commands.Command {
       }
 
     }
-
-
   }
 };
