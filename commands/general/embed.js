@@ -30,7 +30,6 @@ module.exports = class EmbedCommand extends commands.Command {
       .setTitle(TITLE)
       .setDescription(CONTENT)
       .setFooter('portalmybot.com', msg.guild.iconURL())
-  //  msg.author.send("Mensaje enviado correctamente", { embed: embed } );
 
     msg.channel.send(embed);
 
