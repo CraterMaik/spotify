@@ -3,7 +3,6 @@ const cmc_api = require("cmc-info");
 require('dotenv').config();
 
 const cmc = new cmc_api(process.env.COIN_MARKET);
-
 module.exports = class cryptoCommand extends commands.Command {
   constructor() {
     super({
@@ -27,14 +26,10 @@ module.exports = class cryptoCommand extends commands.Command {
         let supply = numberFormat(data['circulating_supply'], 2);
         let price = numberFormat(data['quote']['USD']['price'], 4);
 
-        let volume_24h = numberFormat(data['quote']['USD']['volume_24h'], 2);
-        let percent_change_1h = numberFormat(data['quote']['USD']['percent_change_1h'], 2);
-
         let percent_change_24h = numberFormat(data['quote']['USD']['percent_change_24h'], 2);
         let percent_change_7d = numberFormat(data['quote']['USD']['percent_change_7d'], 2);
         let market_cap = numberFormat(data['quote']['USD']['market_cap'], 2);
 
-       // let Price24 = (Math.abs(percent_change_24h) / price) / 100;
         let price24 = (Math.abs(percent_change_24h) * Math.trunc(data['quote']['USD']['price'])) / 100;
         let price7d = (Math.abs(percent_change_7d) * Math.trunc(data['quote']['USD']['price'])) / 100;
 
@@ -100,5 +95,6 @@ function numberFormat(x, precision) {
   if (arr.length == 2) {
     formatted += "." + arr[1];
   }
+  
   return formatted;
 }
