@@ -1,6 +1,5 @@
 const commands = require('../../commands.js')
 const db = require("../../database/database.js");
-
 module.exports = class allBeersCommand extends commands.Command {
   constructor() {
     super({
@@ -13,7 +12,6 @@ module.exports = class allBeersCommand extends commands.Command {
   }
   async execute(msg, args) {
 
-    //#comando @user, add, '22'
     let cantidad = parseInt(args[0]);
     let cantidadBeers = Math.round(cantidad)
     if (!Number.isInteger(cantidadBeers)) return msg.channel.send('Debes ingresar un numero como parametro. `allbeers <cantidad>`')
