@@ -18,7 +18,7 @@ module.exports = class joinCommand extends commands.Command {
         msg.reply('You need to join a voice channel first!');
       }
     
-  
+      
   }
 
 }
