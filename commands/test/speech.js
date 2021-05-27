@@ -22,6 +22,8 @@ module.exports = class speechCommand extends Command {
     const connection = await message.member.voice.channel.join();
     
     msg.channel.send('pong');
+    IBM_API_KEY
+    IBM_SERVICE_URL
     
   }
 }
