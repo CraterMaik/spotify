@@ -41,13 +41,19 @@ module.exports = class speechCommand extends Command {
     let stream;
 
     connection.on('speaking', (user, speaking) => {
+       // console.log(speaking);
        if (speaking.bitfield == 0 || user.bot) return;
-
-       let audio = connection.receiver.createStream(user, {
-         mode: 'pcm',
-         end: 'silence'
-       });
-
+     // console.log(speaking);
+          if (speaking.bitfield) {
+              let audio = connection.receiver.createStream(user, {
+                mode: 'pcm',
+                end: 'silence'
+              });
+             console.log(`Hablando: ${user.tag}`);
+             console.log(audio);
+          }
+       
+/* 
        if(speaking) {
          console.log(`Hablando: ${user.tag}`);
          let talking = user.username
@@ -62,7 +68,7 @@ module.exports = class speechCommand extends Command {
 
          }));
 
-       }
+       } */
 
 
     })
